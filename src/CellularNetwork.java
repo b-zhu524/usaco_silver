@@ -18,12 +18,15 @@ public class CellularNetwork {
         StringTokenizer st3 = new StringTokenizer(in.readLine());
         for (int i=0; i<m; i++) cells[i] = Integer.parseInt(st3.nextToken());
 
-        int res = solve(n, m, cities, cells);
-        System.out.println(res);
-    }
+        long res = 0;
+        int j = 0;
 
-    private static int solve(int n, int m, int[] cities, int[] cells) {
-        return 1;
+        for (int i=0; i<n; i++) {
+            while (j+1 < m && Math.abs(cities[i] - cells[j]) >= Math.abs(cities[i]-cells[j+1])) j++;
+            res = Math.max(res, Math.abs(cities[i] - cells[j]));
+        }
+
+        System.out.println(res);
     }
 }
 
